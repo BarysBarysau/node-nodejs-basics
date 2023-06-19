@@ -1,6 +1,16 @@
+import * as cp from "node:child_process";
+const childInTime = cp.spawn("node", ["./files/script.js"]);
+import "./files/script.js";
+
 const spawnChildProcess = async (args) => {
-    // Write your code here
+  try {
+    for (const item of args) {
+      childInTime.stdin.write(item);
+    }
+    childInTime.stdout.pipe(process.stdout);
+  } catch (err) {
+    throw err;
+  }
 };
 
-// Put your arguments in function call to test this functionality
-spawnChildProcess( /* [someArgument1, someArgument2, ...] */);
+spawnChildProcess(["me", "you", "foo", "bar"]);

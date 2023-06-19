@@ -1,5 +1,15 @@
+import { Transform } from "node:stream";
+
 const transform = async () => {
-    // Write your code here 
+  const t = new Transform({
+    transform(chunk, utf8, callback) {
+      callback(
+        null,
+        `${chunk.toString().replace("\n", "").split("").reverse().join("")}\n`
+      );
+    },
+  });
+  process.stdin.pipe(t).pipe(process.stdout);
 };
 
 await transform();

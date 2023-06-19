@@ -1,5 +1,6 @@
 const parseEnv = () => {
-    // Write your code here 
+  console.log(process.env.RSS_foo);
+  console.log(process.env.RSS_bar);
 };
 
 parseEnv();
